@@ -13,11 +13,17 @@
         <property name="can_focus">False</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkButton" id="label_r">
-            <property name="label" translatable="yes">Reiniciar</property>
+          <object class="GtkButton" id="reiniciar">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
+            <child>
+              <object class="GtkLabel" id="label_r">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Quien gana</property>
+              </object>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
