@@ -1,12 +1,15 @@
+// INclusión de bibliotecas necesarias
+
 #include <gtk/gtk.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-// se inicializa la variable turno globalmente
+
+// Incialización de variables globales
 int turno;
 char x1, x2, x3, x4, x5, x6, x7, x8, x9;
 
-// funcion utilizada por todos los botones para cambiar el tablero
+// Funcion utilizada por el boton 1  para cambiar el tablero
 void on_clicked_1(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -18,10 +21,12 @@ void on_clicked_1(GtkWidget *widget, gpointer data) {
       turno -= 1;
       x1 = 'o';
     }
-// se le quita la sensibilidad al boton para que no se cambie el signo al
-// tocarlo de nuevo
+// Se le quita la sensibilidad al boton para que no se cambie el signo al
+// tocarlo de nuevo.
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 2  para cambiar el tablero
 void on_clicked_2(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -35,6 +40,9 @@ void on_clicked_2(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 3  para cambiar el tablero
+
 void on_clicked_3(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -48,6 +56,9 @@ void on_clicked_3(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 4 para cambiar el tablero
+
 void on_clicked_4(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -61,6 +72,9 @@ void on_clicked_4(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 5  para cambiar el tablero
+
 void on_clicked_5(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -74,6 +88,9 @@ void on_clicked_5(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 6  para cambiar el tablero
+
 void on_clicked_6(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -87,6 +104,9 @@ void on_clicked_6(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 7 para cambiar el tablero
+
 void on_clicked_7(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -100,6 +120,9 @@ void on_clicked_7(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 8  para cambiar el tablero
+
 void on_clicked_8(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -113,6 +136,9 @@ void on_clicked_8(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
+
+// Funcion utilizada por el boton 9 para cambiar el tablero
+
 void on_clicked_9(GtkWidget *widget, gpointer data) {
     GtkImage *image = (GtkImage *) data;
     if (turno == 0){
@@ -126,7 +152,13 @@ void on_clicked_9(GtkWidget *widget, gpointer data) {
     }
     gtk_widget_set_sensitive (widget, FALSE);
 }
-void on_clicked_reiniciar(GtkWidget *widget, gpointer data) {
+
+// Función que se usa para saber quién gana; con cada movimiento se debe
+// cliquear este botón, si label del botón no cambia, siga jugando, cuando un
+// jugador gana, aparace un mensaje que indica el símbolo que ganó. Si ya el
+// tablero se llenó y no se puede hacer click en el botón; no hay ganador.
+
+void on_clicked_mensaje(GtkWidget *widget, gpointer data) {
     GtkLabel *label = (GtkLabel *) data;
     if (x1 == 'x' && x1 == x2 && x1 == x3
     || x4 == 'x' && x4 == x5 && x4 == x6
@@ -137,8 +169,8 @@ void on_clicked_reiniciar(GtkWidget *widget, gpointer data) {
     || x3 == 'x' && x3 == x6 && x3 == x9
 
     || x1 == 'x' && x1 == x5 && x1 == x9
-    || x3 == 'x' && x3 == x5 && x2 == x7){
-      gtk_label_set_text(label, "x");
+    || x3 == 'x' && x3 == x5 && x3 == x7){
+      gtk_label_set_text(label, "Gana X");
     }
     if (x1 == 'o' && x1 == x2 && x1 == x3
     || x4 == 'o' && x4 == x5 && x4 == x6
@@ -149,20 +181,22 @@ void on_clicked_reiniciar(GtkWidget *widget, gpointer data) {
     || x3 == 'o' && x3 == x6 && x3 == x9
 
     || x1 == 'o' && x1 == x5 && x1 == x9
-    || x3 == 'o' && x3 == x5 && x2 == x7){
-      gtk_label_set_text(label, "o");
+    || x3 == 'o' && x3 == x5 && x3 == x7){
+      gtk_label_set_text(label, "Gana O");
     }
 }
 
 int main(int argc, char* argv[]){
-  // se usa una semilla para poder generar un numero random
+  // Se usa una semilla para poder generar un numero random
   srand(time(0));
-  // se determina el turno como 0 o 1 para saber que jugador empieza
+  // Se determina el turno como 0 o 1 para saber que jugador empieza
   turno = (rand() %2);
+
+  // Definición de los widgets
 
   GtkBuilder *builder;
   GtkWidget *window;
-  GtkWidget *reiniciar;
+  GtkWidget *mensaje;
   GtkWidget *button_1;
   GtkWidget *button_2;
   GtkWidget *button_3;
@@ -183,12 +217,13 @@ int main(int argc, char* argv[]){
   GtkWidget *imagen_9;
   GtkWidget *label_r;
 
-  gtk_init(&argc, &argv);
+  gtk_init(&argc, &argv);  // Inicialización
 
-  // Get GUI from file
+  // Obtener i_d's de los widgets
+
   builder = gtk_builder_new_from_file("./gato.glade");
   window = GTK_WIDGET(gtk_builder_get_object(builder, "main_window"));
-  reiniciar = GTK_WIDGET(gtk_builder_get_object(builder, "reiniciar"));
+  mensaje = GTK_WIDGET(gtk_builder_get_object(builder, "mensaje"));
   button_1 = GTK_WIDGET(gtk_builder_get_object(builder, "button_1"));
   button_2 = GTK_WIDGET(gtk_builder_get_object(builder, "button_2"));
   button_3 = GTK_WIDGET(gtk_builder_get_object(builder, "button_3"));
@@ -221,11 +256,11 @@ int main(int argc, char* argv[]){
   g_signal_connect(button_7, "clicked", G_CALLBACK(on_clicked_7), imagen_7);
   g_signal_connect(button_8, "clicked", G_CALLBACK(on_clicked_8), imagen_8);
   g_signal_connect(button_9, "clicked", G_CALLBACK(on_clicked_9), imagen_9);
-  g_signal_connect(reiniciar, "clicked", G_CALLBACK(on_clicked_reiniciar), label_r);
+  g_signal_connect(mensaje, "clicked", G_CALLBACK(on_clicked_mensaje), label_r);
 
 
+  // Muestra e inicia el bucle principal
 
-  // Show and start main loop
   gtk_widget_show_all(window);
   gtk_main();
   return 0;
